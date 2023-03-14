@@ -5,7 +5,7 @@ import { createServer } from "http";
 
 const port = process.env.PORT || 8080;
 const app = express();
-const httpServer = createServer();
+const httpServer = createServer(app);
 
 app.use(cors());
 app.use(express.json());
@@ -22,10 +22,9 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User connected ${socket.id}`);
+  console.log(`User connected ${socket.id}`, socket.connected);
 });
 
-app.listen(port, () => {
-	console.log(`Server running on http://localhost:${port}`);
-});
+
+httpServer.listen(3000);
 
