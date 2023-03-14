@@ -5,7 +5,7 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
 
     const joinRoom = () => {
         if (room !== '' && username !== '') {
-          socket.emit('join_room', { username, room });
+          socket.emit('join-room', { username, room });
         }
     };
 
