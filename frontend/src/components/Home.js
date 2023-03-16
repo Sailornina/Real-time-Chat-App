@@ -7,6 +7,18 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
         if (room !== '' && username !== '') {
           socket.emit('join-room', { username, room });
         }
+    }
+
+    const handleFormSubmit = (e) => {
+        e.preventDefault();
+    };
+
+    const handleOnUser = (e) => {
+        setUsername(e.target.value);
+    };
+
+    const handleOnRoom = (e) => {
+        setRoom(e.target.value);
     };
 
     const navigate = useNavigate();
@@ -15,20 +27,18 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
 
     return (
         <div className="container">
-            <div className="formContainer">
+            <form onSubmit={handleFormSubmit} className="formContainer">
                 <h1>WineLovers</h1>
-                <input className="input" placeholder='Username...' onChange={(e) => setUsername(e.target.value)}/>
-
-                <select className="input option" onChange={(e) => setRoom(e.target.value)}>
+                <input className="input" placeholder='Username...' onChange={handleOnUser}/>
+                <select className="input option" onChange={handleOnRoom}>
                     <option>-- Select Room --</option>
                     <option value='malbec'>Malbec</option>
                     <option value='pinot-noir'>Pinot Noir</option>
                     <option value='chardonnay'>Chardonnay</option>
                     <option value='cinsaut'>Cinsaut</option>
                 </select>
-
                 <button className="btn btn-secondary" onClick={joinRoom}>Join Room</button>
-            </div>
+            </form>
         </div>
     );
 };
