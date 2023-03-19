@@ -2,16 +2,14 @@ import './home.css';
 import { useNavigate } from 'react-router-dom'; 
 
 const Home = ({ username, setUsername, room, setRoom, socket }) => {
+    const navigate = useNavigate();
 
     const joinRoom = () => {
         if (room !== '' && username !== '') {
           socket.emit('join-room', { username, room });
+          navigate('/chat', { replace: true });
         }
     }
-
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-    };
 
     const handleOnUser = (e) => {
         setUsername(e.target.value);
@@ -21,13 +19,9 @@ const Home = ({ username, setUsername, room, setRoom, socket }) => {
         setRoom(e.target.value);
     };
 
-    const navigate = useNavigate();
-
-    navigate('/chat', { replace: true });
-
     return (
         <div className="container">
-            <form onSubmit={handleFormSubmit} className="formContainer">
+            <form className="formContainer">
                 <h1>WineLovers</h1>
                 <input className="input" placeholder='Username...' onChange={handleOnUser}/>
                 <select className="input option" onChange={handleOnRoom}>
