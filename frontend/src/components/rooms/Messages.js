@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useState, useEffect } from 'react';
 
 const Messages = ({ socket }) => {
-  const [messagesRecieved, setMessagesReceived] = useState([]);
+  const [messagesReceived, setMessagesReceived] = useState([]);
 
   useEffect(() => { // a socket event is recieved from the server.
     socket.on('receive_message', (data) => {
@@ -21,7 +21,7 @@ const Messages = ({ socket }) => {
 
   return (
     <div className="messagesColumn">
-      {messagesRecieved.map((msg, item) => (
+      {messagesReceived.map((msg, item) => (
         <div className="message" key={item}>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span className="msgUser">{msg.username}</span>
