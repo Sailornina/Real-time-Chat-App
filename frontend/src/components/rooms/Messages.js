@@ -6,7 +6,7 @@ const Messages = ({ socket }) => {
     const [messagesRecieved, setMessagesReceived] = useState([]);
 
     useEffect(() => { // a socket event is recieved from the server.
-        socket.on('messageResponse', (data) =>
+        socket.on('receive_message', (data) =>
             setMessagesReceived([
                 ...messagesRecieved,
                 data.message,
