@@ -23,7 +23,7 @@ const Messages = ({ socket }) => {
     <div className="messagesColumn">
       {messagesReceived.map((msg, item) => (
         <div className="message" key={item}>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div>
             <span className="msgUser">{msg.username}</span>
             <span className="msgUser">
               {moment(msg.createdtime).format('h:mma')}
